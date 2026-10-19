@@ -29,7 +29,7 @@ The test does not delete notes. Its sample notes remain available for inspection
 
 ## Run locally
 
-Docker, Python 3, kubectl and the existing `devops-notes` and `devops-recovery` kind clusters from the Kubernetes and disaster recovery labs are required. Keep the repositories next to each other. No Python packages are needed. The scripts use explicit contexts and kubeconfigs; they do not change the global context.
+Use Linux or WSL with Docker, Python 3, kubectl and the existing `devops-notes` and `devops-recovery` kind clusters from the Kubernetes and disaster recovery labs. Keep the repositories next to each other. No Python packages are needed. The scripts use explicit contexts and kubeconfigs; they do not change the global context.
 
 ```bash
 python3 scripts/lab.py init
@@ -65,7 +65,7 @@ A connection failure or write timeout can happen after a local commit. The notes
 
 ## Results and related work
 
-The [local results](evidence/verification.json) and [test notes](docs/validation.en.md) record what actually happened. GitHub Actions creates two disposable clusters and runs the same exercise. Execution was assistant-assisted; repeating the procedure and explaining the decisions remain part of the learning work.
+All 48 checks passed locally and the same 48 passed in CI. The [local results](evidence/verification.json) and [test notes](docs/validation.en.md) record what actually happened. GitHub Actions creates two disposable clusters and runs the same exercise. Execution was assistant-assisted; repeating the procedure and explaining the decisions remain part of the learning work.
 
 The Alpine images are the releases already adopted by the other labs, pinned by digest in [config/images.json](config/images.json). This lab does not change them or suppress findings: the analysis and Trivy snapshots remain in [security-lab](https://github.com/tommmdl/security-lab). A snapshot with zero reported findings is not a permanent guarantee.
 

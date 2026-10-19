@@ -29,7 +29,7 @@ O teste não apaga notas. Os exemplos criados por ele ficam no banco para inspe�
 
 ## Rodar no ambiente local
 
-São necessários Docker, Python 3, kubectl e os clusters kind `devops-notes` e `devops-recovery` já criados pelos labs de Kubernetes e disaster recovery. Os repositórios ficam lado a lado. Não é preciso instalar pacote Python. Os contextos e kubeconfigs são explícitos; o script não troca o contexto global.
+Use Linux ou WSL com Docker, Python 3, kubectl e os clusters kind `devops-notes` e `devops-recovery` já criados pelos labs de Kubernetes e disaster recovery. Os repositórios ficam lado a lado. Não é preciso instalar pacote Python. Os contextos e kubeconfigs são explícitos; o script não troca o contexto global.
 
 ```bash
 python3 scripts/lab.py init
@@ -65,7 +65,7 @@ Uma falha de conexão ou timeout de escrita pode acontecer depois do commit loca
 
 ## Resultados e continuidade
 
-Os [resultados locais](evidence/verification.json) e o [relato dos testes](docs/validation.md) registram o que realmente aconteceu. O GitHub Actions cria dois clusters descartáveis e executa o mesmo roteiro. A execução foi feita com auxílio do assistente; repetir o procedimento e explicar as decisões faz parte do estudo.
+Passaram 48 verificações locais e as mesmas 48 no CI. Os [resultados locais](evidence/verification.json) e o [relato dos testes](docs/validation.md) registram o que realmente aconteceu. O GitHub Actions cria dois clusters descartáveis e executa o mesmo roteiro. A execução foi feita com auxílio do assistente; repetir o procedimento e explicar as decisões faz parte do estudo.
 
 As imagens Alpine são as versões já adotadas nos outros labs e estão presas por digest em [config/images.json](config/images.json). Este lab não altera as imagens nem esconde achados: a análise e as fotografias do Trivy continuam no [security-lab](https://github.com/tommmdl/security-lab). Zero achados em uma fotografia não é garantia permanente.
 
