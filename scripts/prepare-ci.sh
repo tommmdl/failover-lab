@@ -6,7 +6,7 @@ ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 mkdir -p "$ROOT/.local/bin" "$ROOT/../kubernetes-lab/.local" "$ROOT/../disaster-recovery-lab/.local"
 cd "$ROOT/.local/bin"
 curl -fsSLo kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-amd64
-curl -fsSLo kind.sha256 https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-amd64.sha256
+curl -fsSLo kind.sha256 https://github.com/kubernetes-sigs/kind/releases/download/v0.33.0/kind-linux-amd64.sha256sum
 printf '%s  kind\n' "$(awk '{print $1}' kind.sha256)" | sha256sum --check
 curl -fsSLo kubectl https://dl.k8s.io/release/v1.37.1/bin/linux/amd64/kubectl
 curl -fsSLo kubectl.sha256 https://dl.k8s.io/release/v1.37.1/bin/linux/amd64/kubectl.sha256
