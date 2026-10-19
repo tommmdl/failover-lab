@@ -1,0 +1,54 @@
+name: Testa a ida e a volta entre clusters
+on:
+  push:
+    branches: [main]
+    paths: ['config/**', 'scripts/**', 'tests/**', '.github/workflows/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  failover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      KUBECTL: ${{ github.workspace }}/.local/bin/kubectl
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Cria dois clusters descartáveis
+        run: bash scripts/prepare-ci.sh
+      - name: Cria o banco primário e a réplica síncrona
+        run: python3 scripts/lab.py init
+      - name: Abre o endereço local da aplicação
+        run: nohup python3 scripts/gateway.py > .local/gateway.log 2>&1 &
+      - name: Provoca falhas e testa failover e failback
+        run: python3 tests/verify.py
+      - name: Guarda resultados e diagnóstico sem Secrets
+        if: always()
+        run: |
+          for side in a b; do
+            if [ "$side" = a ]; then config=../kubernetes-lab/.local/kubeconfig; else config=../disaster-recovery-lab/.local/kubeconfig; fi
+            .local/bin/kubectl --kubeconfig "$config" -n failover-demo get pods,pvc,deploy > ".local/status-$side.txt" 2>&1 || true
+            .local/bin/kubectl --kubeconfig "$config" -n failover-demo logs deploy/postgres -c postgres --tail=100 > ".local/postgres-$side.txt" 2>&1 || true
+            .local/bin/kubectl --kubeconfig "$config" -n failover-demo logs deploy/postgres -c clone --tail=30 > ".local/clone-$side.txt" 2>&1 || true
+          done
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: failover-results
+          path: |
+            evidence/verification.json
+            .local/status-*.txt
+            .local/postgres-*.txt
+            .local/clone-*.txt
+          include-hidden-files: true
+          retention-days: 30
+      - name: Remove apenas os clusters do runner
+        if: always()
+        run: |
+          if [ -x .local/bin/kind ]; then
+            .local/bin/kind delete cluster --name devops-recovery
+            .local/bin/kind delete cluster --name devops-notes
+          fi

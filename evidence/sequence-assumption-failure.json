@@ -1,0 +1,112 @@
+{
+  "started_utc": "2026-10-19T19:21:34Z",
+  "checks": [
+    {
+      "name": "Starts with cluster a active",
+      "passed": true
+    },
+    {
+      "name": "Clusters have different identities",
+      "passed": true
+    },
+    {
+      "name": "Primary uses remote_apply",
+      "passed": true
+    },
+    {
+      "name": "Standby is synchronous",
+      "passed": true
+    },
+    {
+      "name": "Gateway starts healthy",
+      "passed": true
+    },
+    {
+      "name": "Promotion is refused while old writer exists",
+      "passed": true
+    },
+    {
+      "name": "Refused promotion leaves standby in recovery",
+      "passed": true
+    },
+    {
+      "name": "Standby rejects direct writes",
+      "passed": true
+    },
+    {
+      "name": "Invalid request is rejected",
+      "passed": true
+    },
+    {
+      "name": "API acknowledges write: failover-1792437696-before-0",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "a"
+      }
+    },
+    {
+      "name": "API acknowledges write: failover-1792437696-before-1",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "a"
+      }
+    },
+    {
+      "name": "API acknowledges write: failover-1792437696-before-2",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "a"
+      }
+    },
+    {
+      "name": "Every acknowledged row is visible on standby",
+      "passed": true
+    },
+    {
+      "name": "No HTTP success is reported without the synchronous standby",
+      "passed": true,
+      "detail": {
+        "outcome": "unknown; do not retry",
+        "http": 502
+      }
+    },
+    {
+      "name": "Unknown outcome is reconciled once, without retry",
+      "passed": true
+    },
+    {
+      "name": "failover: initial replica matches all rows",
+      "passed": true
+    },
+    {
+      "name": "failover: application outage is visible",
+      "passed": true,
+      "detail": {
+        "http": 502
+      }
+    },
+    {
+      "name": "failover: active side changed",
+      "passed": true
+    },
+    {
+      "name": "failover: rows and timestamps survive",
+      "passed": true
+    },
+    {
+      "name": "failover: identity sequence survives",
+      "passed": false
+    }
+  ],
+  "handovers": [],
+  "unknown_outcome": {
+    "request_retried": false,
+    "eventually_found_once_on_both_sides": true
+  },
+  "passed": false,
+  "error": "failover: identity sequence survives",
+  "duration_seconds": 56.72
+}

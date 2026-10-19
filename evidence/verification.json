@@ -1,0 +1,311 @@
+{
+  "started_utc": "2026-10-19T19:23:24Z",
+  "checks": [
+    {
+      "name": "Starts with cluster a active",
+      "passed": true
+    },
+    {
+      "name": "Clusters have different identities",
+      "passed": true
+    },
+    {
+      "name": "Primary uses remote_apply",
+      "passed": true
+    },
+    {
+      "name": "Standby is synchronous",
+      "passed": true
+    },
+    {
+      "name": "Gateway starts healthy",
+      "passed": true
+    },
+    {
+      "name": "Promotion is refused while old writer exists",
+      "passed": true
+    },
+    {
+      "name": "Refused promotion leaves standby in recovery",
+      "passed": true
+    },
+    {
+      "name": "Standby rejects direct writes",
+      "passed": true
+    },
+    {
+      "name": "Invalid request is rejected",
+      "passed": true
+    },
+    {
+      "name": "API acknowledges write: failover-1792437806-before-0",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "a"
+      }
+    },
+    {
+      "name": "API acknowledges write: failover-1792437806-before-1",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "a"
+      }
+    },
+    {
+      "name": "API acknowledges write: failover-1792437806-before-2",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "a"
+      }
+    },
+    {
+      "name": "Every acknowledged row is visible on standby",
+      "passed": true
+    },
+    {
+      "name": "No HTTP success is reported without the synchronous standby",
+      "passed": true,
+      "detail": {
+        "outcome": "unknown; do not retry",
+        "http": 502
+      }
+    },
+    {
+      "name": "Unknown outcome is reconciled once, without retry",
+      "passed": true
+    },
+    {
+      "name": "failover: initial replica matches all rows",
+      "passed": true
+    },
+    {
+      "name": "failover: application outage is visible",
+      "passed": true,
+      "detail": {
+        "http": 502
+      }
+    },
+    {
+      "name": "failover: active side changed",
+      "passed": true
+    },
+    {
+      "name": "failover: rows and timestamps survive",
+      "passed": true
+    },
+    {
+      "name": "failover: identity sequence never reuses existing IDs",
+      "passed": true,
+      "detail": {
+        "before": "37|t",
+        "after": "66|t",
+        "gaps_allowed": true
+      }
+    },
+    {
+      "name": "failover: schema and indexes survive",
+      "passed": true
+    },
+    {
+      "name": "failover: old volume is retained",
+      "passed": true
+    },
+    {
+      "name": "failover: old side returns as a replica",
+      "passed": true
+    },
+    {
+      "name": "failover: only one API accepts traffic",
+      "passed": true
+    },
+    {
+      "name": "failover: gateway health recovers",
+      "passed": true
+    },
+    {
+      "name": "failover: gateway returns every row",
+      "passed": true
+    },
+    {
+      "name": "API acknowledges write: failover-1792437806-on-recovery-cluster",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "b"
+      }
+    },
+    {
+      "name": "Write after failover has a new identity",
+      "passed": true
+    },
+    {
+      "name": "New write replicates back to original cluster",
+      "passed": true
+    },
+    {
+      "name": "failback: initial replica matches all rows",
+      "passed": true
+    },
+    {
+      "name": "failback: application outage is visible",
+      "passed": true,
+      "detail": {
+        "http": 502
+      }
+    },
+    {
+      "name": "Interrupted controller keeps gateway closed",
+      "passed": true
+    },
+    {
+      "name": "Fencing is confirmed in every old node runtime",
+      "passed": true,
+      "detail": {
+        "nodes": [
+          "devops-recovery-control-plane"
+        ]
+      }
+    },
+    {
+      "name": "failback: active side changed",
+      "passed": true
+    },
+    {
+      "name": "failback: rows and timestamps survive",
+      "passed": true
+    },
+    {
+      "name": "failback: identity sequence never reuses existing IDs",
+      "passed": true,
+      "detail": {
+        "before": "67|t",
+        "after": "99|t",
+        "gaps_allowed": true
+      }
+    },
+    {
+      "name": "failback: schema and indexes survive",
+      "passed": true
+    },
+    {
+      "name": "failback: old volume is retained",
+      "passed": true
+    },
+    {
+      "name": "failback: old side returns as a replica",
+      "passed": true
+    },
+    {
+      "name": "failback: only one API accepts traffic",
+      "passed": true
+    },
+    {
+      "name": "failback: gateway health recovers",
+      "passed": true
+    },
+    {
+      "name": "failback: gateway returns every row",
+      "passed": true
+    },
+    {
+      "name": "API acknowledges write: failover-1792437806-after-failback",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "cluster": "a"
+      }
+    },
+    {
+      "name": "All writes survive the complete round trip",
+      "passed": true
+    },
+    {
+      "name": "Failover-side write survives failback",
+      "passed": true
+    },
+    {
+      "name": "A primary pod restart keeps the same PVC and rows",
+      "passed": true
+    },
+    {
+      "name": "Existing labs keep workloads, images and PVC identities",
+      "passed": true
+    },
+    {
+      "name": "Final service is healthy",
+      "passed": true
+    }
+  ],
+  "handovers": [
+    {
+      "name": "failover",
+      "from": "a",
+      "to": "b",
+      "seconds_from_switch_call": 28.63,
+      "rows_preserved": 12,
+      "row_sha256": "5bc44655460846f73a806a5817a6965831c7583d84cb53cf904c6b42c61ada61",
+      "sequence": "37|t"
+    },
+    {
+      "name": "failback",
+      "from": "b",
+      "to": "a",
+      "seconds_from_switch_call": 31.04,
+      "rows_preserved": 13,
+      "row_sha256": "8f0c2391be269dfb1cb6283c6013fcb9b324846c21e76498877250b7e0a7b5a8",
+      "sequence": "67|t"
+    }
+  ],
+  "unknown_outcome": {
+    "request_retried": false,
+    "eventually_found_once_on_both_sides": true
+  },
+  "fencing_history": [
+    {
+      "from": "a",
+      "to": "b",
+      "retained_pvc": "pgdata-a-9f5ef6ea",
+      "started_utc": "2026-10-19T19:23:50Z",
+      "wal_barrier": "0/70007C8",
+      "fenced_nodes": [
+        "devops-notes-control-plane",
+        "devops-notes-worker"
+      ],
+      "new_replica_pvc": "pgdata-a-cae38a53",
+      "completed_utc": "2026-10-19T19:24:17Z"
+    },
+    {
+      "from": "b",
+      "to": "a",
+      "retained_pvc": "pgdata-b-820ae058",
+      "started_utc": "2026-10-19T19:24:25Z",
+      "wal_barrier": "0/90006A8",
+      "fenced_nodes": [
+        "devops-recovery-control-plane"
+      ],
+      "new_replica_pvc": "pgdata-b-f5b5ef94",
+      "completed_utc": "2026-10-19T19:24:54Z"
+    }
+  ],
+  "images": {
+    "api": {
+      "image": "ghcr.io/tommmdl/docker-lab@sha256:ae2e93fdbab7bc912897e6524b3e17b982e97cfb29bcb4fc36d9c014d615eb91"
+    },
+    "postgres": {
+      "image": "ghcr.io/tommmdl/docker-lab@sha256:8b6813ec76804698c33e4dac8f501ca8f641affcbd27cbc3b7dd6fdb02874fc3"
+    }
+  },
+  "final": {
+    "active": "a",
+    "standby": "b",
+    "synchronous": true,
+    "rows": 14,
+    "retained_volumes": 4,
+    "http": 200
+  },
+  "passed": true,
+  "duration_seconds": 106.98
+}
